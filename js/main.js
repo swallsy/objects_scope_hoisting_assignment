@@ -200,25 +200,24 @@ HINTS:
 - One of the variables is missing something.
 - Are the functions being called when they are supposed to?
 **************************************************************************************/
+
 (function() {
   "use strict";
 
-  var goodStanding = false;
-  var monthsActive = 2;
+  var goodStanding = true;
+  var monthsActive = 18;
   var name = null;
 
-  var benefit = {}
+  var benefit = {};
 
   benefit.credit = 50;
   benefit.discount = 5;
 
-  var accountCheck = function() {
-    var name = "James";
-    var greeting = function() {
+  function accountCheck () {
+    name = "James";
+    function greeting () {
       return "Hello " + name + ". Here is the status of your account."
     }
-
-      accountCheck();
 
     function accountStat() {
       if (goodStanding == true && monthsActive >= 12) {
@@ -241,8 +240,10 @@ HINTS:
         return "Thank you for your loyalty. You've been a member for " + monthsActive + " " + "months . You next bill will reflect a $" + benefit.credit + " credit and a " + benefit.discount + "% discount going forward.";
       }
     }
-    //Here 'accountCheck' should return both the 'greeting' output and the 'accountStat' output.
+
+    return greeting() + " " + accountStat();
   }
+    accountCheck();
 
   console.log("#8 accountCheck():", accountCheck());
   console.assert(name == "James", "Test failed. You should set 'name' to 'james' from within accountCheck()");
